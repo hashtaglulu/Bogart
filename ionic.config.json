@@ -1,0 +1,7 @@
+{
+  "name": "Bogart",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
