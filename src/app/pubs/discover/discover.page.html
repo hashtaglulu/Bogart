@@ -1,5 +1,9 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+     <ion-menu-button menu="m1"></ion-menu-button> <!--take the main menu and open it-->
+     <!--<ion-button (click)="onOpenMenu()">Open</ion-button>-->
+    </ion-buttons>
     <ion-title>Discover places</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -11,24 +15,24 @@
         <ion-card > <!--entry point for more detailed information-->
           <ion-card-header>
             <ion-card-title>
-              {{ loadedPlaces[0].title}}
+              {{ loadedPlaces[0]?.title}}
             </ion-card-title>
           </ion-card-header>
-          <ion-img [src] = "loadedPlaces[0].imageUrl">
+          <ion-img [src] = "loadedPlaces[0]?.imageUrl">
           
           </ion-img>
           <ion-card-content>
-            <p>{{loadedPlaces[0].description}}</p><br>
-            <p>{{loadedPlaces[0].openHours[0]}}</p>
-            <p>{{loadedPlaces[0].openHours[1]}}</p>
-            <p>{{loadedPlaces[0].openHours[2]}}</p>
+            <p>{{loadedPlaces[0]?.description}}</p><br>
+            <p>{{loadedPlaces[0]?.openHours[0]}}</p>
+            <p>{{loadedPlaces[0]?.openHours[1]}}</p>
+            <p>{{loadedPlaces[0]?.openHours[2]}}</p>
           </ion-card-content>
 
           <div style="text-align:right">
             <ion-button  
               fill="clear"
               color="primary"
-              [routerLink] = "['/', 'pubs', 'tabs', 'discover', loadedPlaces[0].id]">
+              [routerLink] = "['/', 'pubs', 'tabs', 'discover', loadedPlaces[0]?.id]">
             Wanna see more?
             </ion-button>
           </div>
@@ -40,7 +44,7 @@
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2">
         <ion-list>
-          <ion-item *ngFor="let place of loadedPlaces.slice(1)" 
+          <ion-item *ngFor="let place of loadedPlaces?.slice(1)" 
             [routerLink] = "['/', 'pubs', 'tabs', 'discover', place.id]"
             detail
           > <!-- take it all without the first-->

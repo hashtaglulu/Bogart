@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EditOfferPageRoutingModule } from './edit-offer-routing.module';
+import { CalendarPageRoutingModule } from './calendar-routing.module';
 
-import { EditOfferPage } from './edit-offer.page';
+import { CalendarPage } from './calendar.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditOfferPageRoutingModule
+    CalendarPageRoutingModule
   ],
-  declarations: [EditOfferPage]
+  declarations: [CalendarPage]
 })
-export class EditOfferPageModule {}
+export class CalendarPageModule {}
