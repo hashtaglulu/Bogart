@@ -33,12 +33,12 @@ const routes: Routes = [
             loadChildren: () => import('./offers/new-offer/new-offer.module').then(m => m.NewOfferPageModule)
           },
           {
-            path: 'edit/:placeId', //path that consists of 2 segments: hardcoded & dynamic segmnent
-            loadChildren: () => import('./offers/edit-offer/edit-offer.module').then(m => m.EditOfferPageModule)
+            path: ':placeId', //details page where can see all bookings
+            loadChildren: () => import('./offers/offer-bookings/offer-bookings.module').then(m => m.OfferBookingsPageModule)
           },
           {
-            path: ':placeID', //details page where can see all bookings
-            loadChildren: () => import('./offers/offer-bookings/offer-bookings.module').then(m => m.OfferBookingsPageModule)
+            path: 'edit/:placeId', //path that consists of 2 segments: hardcoded & dynamic segmnent
+            loadChildren: () => import('./offers/edit-offer/edit-offer.module').then(m => m.EditOfferPageModule)
           }
         ]
       },

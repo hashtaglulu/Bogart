@@ -3,13 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/pubs/tabs/offers"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ place.title }}</ion-title>
+    <ion-title>{{ place?.title }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-button margin color="primary" 
-  [routerLink]="['/', 'pubs', 'tabs', 'offers', 'edit', place.id]"
+    [routerLink]="['/', 'pubs', 'tabs', 'offers', 'edit', place?.id]"
   >Edit</ion-button>
 
 </ion-content>
