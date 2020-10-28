@@ -18,11 +18,10 @@
               {{ loadedPlaces[0]?.title}}
             </ion-card-title>
           </ion-card-header>
-          <ion-img [src] = "loadedPlaces[0]?.imageUrl">
-          
-          </ion-img>
+          <ion-img [src] = "loadedPlaces[0]?.imageUrl"></ion-img>
+
           <ion-card-content>
-            <p>{{loadedPlaces[0]?.description}}</p><br>
+            <div style="text-align: center"><ion-text color="danger">{{loadedPlaces[0]?.description}}</ion-text></div><br>
             <p>{{loadedPlaces[0]?.openHours[0]}}</p>
             <p>{{loadedPlaces[0]?.openHours[1]}}</p>
             <p>{{loadedPlaces[0]?.openHours[2]}}</p>
