@@ -4,7 +4,7 @@
       <ion-menu-button menu="m1"></ion-menu-button> <!--take the main menu and open it-->
     </ion-buttons>
 
-    <ion-title>What I Offer</ion-title>
+    <ion-title>Oferte</ion-title>
     <ion-buttons slot="primary">
       <ion-button routerLink="/pubs/tabs/offers/new">        <!--wanna go to the new page-->
         <ion-icon name="add" slot="icon-only"></ion-icon>
@@ -20,17 +20,9 @@
         <ion-list>
 
           <ion-item-sliding *ngFor="let offer of offers"#slidingItem>
-            <ion-item
-              [routerLink]="['/', 'pubs', 'tabs', 'offers', offer.id]">
-              <ion-thumbnail slot="start">
-                <ion-img [src]="offer.imageUrl"></ion-img>
-              </ion-thumbnail>
-              <ion-label>
-                <h1>{{ offer.title }}</h1>
-              </ion-label>
-            </ion-item>
+            <app-offer-item [offer]="offer"></app-offer-item>
               <ion-item-options side="end">
-                <ion-item-option color="secondary" (click)="onEdit(offer.id, slidingItem)">
+                <ion-item-option color="tertiary" (click)="onEdit(offer.id, slidingItem)">
                   <ion-icon name="pencil" slot="icon-only"></ion-icon>
                 </ion-item-option>
               </ion-item-options>

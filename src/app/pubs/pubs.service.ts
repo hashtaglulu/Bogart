@@ -17,7 +17,7 @@ export class PubsService {
       title: '80`sPub',
       imageUrl:'https://timisoara.fest.ro/files/places/8/image_884_2_preview.jpg',
       open_hours: ['luni-joi: 10:00-02:00', 'vineri: 10:00-05:00' ,'sambata: 10:00-05:00', 'duminica: 10:00-02:00']
-    },
+    }
   ];
 
   constructor() {

@@ -25,6 +25,8 @@ export class OffersPage implements OnInit {
   }
 
   onDelete(offerId: string, slidingItem: IonItemSliding){
+    slidingItem.close();
     console.log("delete item", offerId);
+    //TO DO functionality
   }
 }
