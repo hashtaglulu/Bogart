@@ -233,3 +233,11 @@
    ion-button{
      --box-shadow: 2px 2px 2px #6d031c;
    }
+
+   .ion-invalid.ion-touched ion-label{
+     color: var(--ion-color-danger);
+   }
+
+   .ion-valid.ion-touched ion-label{
+     color: var(--ion-color-success);
+   }

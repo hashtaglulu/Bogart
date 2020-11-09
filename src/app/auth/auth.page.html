@@ -1,20 +1,80 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Autentificare</ion-title>
+    <ion-title>{{ isLogin ? 'Login' : 'Signup'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-list>
-    <ion-item>
-      <ion-label position="floating">E-Mail
-      </ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-  </ion-list>
+<!--AUTHENTICATE FORM------------------------------------------------------------------------->
+  <form #f_auth="ngForm" (ngSubmit)="onSubmit(f_auth)"> 
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-list>
+<!--EMAIL------------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">E-Mail</ion-label>
+              <ion-input
+              type="email"
+              ngModel
+              name="email"
+              required
+              email
+              #emailCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label *ngIf="!emailCtrl.valid && emailCtrl.touched"><ion-text>Adresa de e-mail nu este validă.</ion-text></ion-label>
+            </ion-item>
+<!--PASSWORD----------------------------------------------------------------------------------->
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input
+              type="password"
+              ngModel
+              name="password"
+              required
+              minlength="8"
+              #passwordCtrl="ngModel"
+              ></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-label *ngIf="!passwordCtrl.valid && passwordCtrl.touched"><ion-text>Parola trebuie să conțină minim 8 caractere.</ion-text></ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+<!--SIGN UP BUTTON----------------------------------------------------------------------------->
+          <ion-button
+            type="button"
+            color="primary"
+            fill="clear"
+            fill="outline"
+            expand="block"
+            (click)="onSwitchAuthMode()"
+            >
+             Switch to {{ isLogin ? 'Signup' : 'Login'}}
+            </ion-button>
+<!--LOGIN BUTTON------------------------------------------------------------------------------->
+          <ion-button
+            type="submit"
+            color="primary"
+            (click)="onLogin()"
+            expand="block"
+            [disabled]="!f_auth.valid" 
+            >
+              Login
+            </ion-button>      
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  
+
   <!-- <div class="ion-text-center">
       <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
   </div> -->
-  <ion-button color="primary" (click)="onLogin()">Conectare</ion-button>
 
 </ion-content>
