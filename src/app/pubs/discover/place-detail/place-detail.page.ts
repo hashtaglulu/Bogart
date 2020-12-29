@@ -37,22 +37,22 @@ export class PlaceDetailPage implements OnInit {
     //this.navCtrl.navigateBack('/pubs/tabs/discover');
     this.actionSheetCtrl
       .create({
-        header: 'Coose an Action',
+        header: 'Dorești să:',
         buttons: [
           {
-            text: 'Selectare dată',
+            text: 'Selectezi o dată', //aici vreau un calendar(modal-apoi booking modal)
             handler: () => {
               this.openBookingModal('select');
             }
           },
           {
-            text: 'Dată aleatorie',
+            text: 'Alegi o dată aleatorie',
             handler: () => {
               this.openBookingModal('random');
             }
           },
           {
-            text: 'Închide',
+            text: 'Închizi',
             role: 'cancel'
           }
         ]
