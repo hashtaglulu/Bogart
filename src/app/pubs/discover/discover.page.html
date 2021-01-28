@@ -8,12 +8,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-
-  <ion-segment value="all" (ionChange)="onFilterUpdate($event)">  <!--which is checked by default -->
+<ion-content #pageTop class="">
+  <!--which is checked by default -->
+  <!-- <ion-segment value="all" (ionChange)="onFilterUpdate($event)">  
     <ion-segment-button value="all">All places</ion-segment-button>
-    <ion-segment-button value="bookable">Bookable Places</ion-segment-button>
-  </ion-segment>
+    <ion-segment-button value="bookable">*Insert smth here*</ion-segment-button>
+  </ion-segment> -->
 
   <ion-grid>
     <ion-row>
@@ -21,24 +21,25 @@
         <ion-card > <!--entry point for more detailed information-->
           <ion-card-header>
             <ion-card-title>
-              {{ loadedPlaces[0]?.title}}
+              {{ selectedPlace?.title}}
             </ion-card-title>
           </ion-card-header>
-          <ion-img [src] = "loadedPlaces[0]?.imageUrl"></ion-img>
+
+          <ion-img [src] = "selectedPlace?.imageUrl"></ion-img>
 
           <ion-card-content>
-            <div style="text-align: center"><ion-text color="danger">{{loadedPlaces[0]?.description}}</ion-text></div><br>
-            <p>{{loadedPlaces[0]?.openHours[0]}}</p>
-            <p>{{loadedPlaces[0]?.openHours[1]}}</p>
-            <p>{{loadedPlaces[0]?.openHours[2]}}</p>
+            <ion-text color="danger" class="ion-text-center">{{selectedPlace?.description}}</ion-text>
+            <br>
+            <p style="white-space: pre-line">{{selectedPlace?.schedule}}</p>
           </ion-card-content>
 
-          <div style="text-align:right">
-            <ion-button  
-              fill="clear"
-              color="primary"
-              [routerLink] = "['/', 'pubs', 'tabs', 'discover', loadedPlaces[0]?.id]">
-            Wanna see more?
+          <div class="ion-text-center ion-padding-bottom" style="display: flex; justify-content: space-around">
+            <ion-button color="primary" [routerLink] = "['/', 'pubs', 'tabs', 'discover', 'booking', selectedPlace?.id]">
+              Rezervă!
+            </ion-button>
+
+            <ion-button (click)="presentAlert(selectedPlace.title, selectedPlace.id)">
+              <ion-icon name="heart"></ion-icon>
             </ion-button>
           </div>
 
@@ -48,19 +49,20 @@
 
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2">
-        <ion-virtual-scroll [items]="listedLoadedPlaces" approxItemHeight="90px"> <!--approx item height to know how much to scroll and when to prepare to render -->
-          <ion-item *virtualItem="let place" 
-            [routerLink] = "['/', 'pubs', 'tabs', 'discover', place.id]"
-            detail
-          > <!-- take it all without the first-->
+        <ion-virtual-scroll [items]="allPlaces" approxItemHeight="90px"> <!--approx item height to know how much to scroll and when to prepare to render -->
+          <ion-item *virtualItem="let place" (click)="selectPlace(place)">
             <ion-thumbnail slot="start">
-              <ion-img [src]="place.imageUrl "></ion-img>
+              <ion-img [src]="place?.imageUrl"></ion-img>
             </ion-thumbnail>
             <ion-label> <!--wrapper for the text nest to square image-->
-              <h2>{{place.title}}</h2>
-              <p> {{place.description}} </p>
-              <p> {{place.openHours}} </p>
+              <h2>{{place?.title}}</h2>
+              <p>{{place?.description}}</p>
+              <p style="white-space: pre-line">{{place?.schedule}}</p>
             </ion-label>
+
+            <ion-button (click)="presentAlert(place.title, place.id)">
+              <ion-icon name="heart"></ion-icon>
+            </ion-button>
           </ion-item>
         </ion-virtual-scroll>
       </ion-col>

@@ -9,8 +9,8 @@ const routes: Routes = [
     component: DiscoverPage
   },
   {
-    path: 'place-detail',
-    loadChildren: () => import('./place-detail/place-detail.module').then( m => m.PlaceDetailPageModule)
+    path: 'booking/:placeId',  //dynamic parameter -> different places with diff Id
+    loadChildren: () => import('./booking/booking.module').then( m => m.BookingModule)
   }
 ];
 
