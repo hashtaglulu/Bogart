@@ -10,44 +10,18 @@ const routes: Routes = [
     children: [
       {
         path: 'discover',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule)
-          },
-          {
-            path: ':placeId', //dynamic parameter -> different places with diff Id
-            loadChildren: () => import('./discover/place-detail/place-detail.module').then( m => m.PlaceDetailPageModule)
-          }
-        ]
+        loadChildren: () => import('./discover/discover.module').then( m => m.DiscoverPageModule),
       },
       {
-        path: 'offers',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('./offers/offers.module').then(m => m.OffersPageModule)
-          },
-          {
-            path: 'new',
-            loadChildren: () => import('./offers/new-offer/new-offer.module').then(m => m.NewOfferPageModule)
-          },
-          {
-            path: ':placeId', //details page where can see all bookings
-            loadChildren: () => import('./offers/offer-bookings/offer-bookings.module').then(m => m.OfferBookingsPageModule)
-          },
-          {
-            path: 'edit/:placeId', //path that consists of 2 segments: hardcoded & dynamic segmnent
-            loadChildren: () => import('./offers/edit-offer/edit-offer.module').then(m => m.EditOfferPageModule)
-          }
-        ]
+        path: 'my-favourite-places',
+        loadChildren: () => import('./my-favourite-places/my-favourite-places.module').then( m => m.MyFavouritePlacesModule),
       },
       {
         path: '',
         redirectTo: '/pubs/tabs/discover',
-        pathMatch: 'full' 
+        pathMatch: 'full'
       }
-    ]
+    ],
   },
   {
     path: '',
