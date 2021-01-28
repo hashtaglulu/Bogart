@@ -12,31 +12,46 @@
       <ion-list>
         <ion-menu-toggle menu="m1">
         <ion-item lines = "none" routerLink="/pubs/tabs/discover">
-          <ion-icon name = "search-outline" slot="start"></ion-icon>
-          <ion-label>Descoperă</ion-label>
+          <ion-icon name = "home" slot="start"></ion-icon>
+          <ion-label>Descoperă locații</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+      
+      <ion-menu-toggle>
+        <ion-item lines = "none" routerLink="my-favourite-places">
+          <ion-icon name="heart" slot="start"></ion-icon>
+          <ion-label>Locații favorite</ion-label>
         </ion-item>
       </ion-menu-toggle>
 
       <ion-menu-toggle>
-        <ion-item lines = "none">
-          <ion-icon name = "heart" slot="start"></ion-icon>
-          <ion-label>Favorite</ion-label>
+        <ion-item lines = "none" routerLink="/my-bookings">
+          <ion-icon name="body" slot="start"></ion-icon>
+          <ion-label>Rezervările mele</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-item-divider>
+      </ion-item-divider>
+
+      <h6 style="padding-left: 20px; color: #6d031c">Panou administrativ</h6>
+
+      <ion-menu-toggle>
+        <ion-item lines = "none" routerLink="/admin-bookings">
+          <ion-icon name="construct" slot="start"></ion-icon>
+          <ion-label>Administrează rezervări</ion-label>
         </ion-item>
       </ion-menu-toggle>
 
       <ion-menu-toggle>
-        <ion-item lines = "none" routerLink="/booking">
-        <ion-icon name = "checkbox-outline" slot="start"></ion-icon>
-        <ion-label>Rezervări</ion-label>
+        <ion-item lines = "none" routerLink="/admin-places">
+          <ion-icon name="construct" slot="start"></ion-icon>
+          <ion-label>Administrează locații</ion-label>
         </ion-item>
       </ion-menu-toggle>
 
-       <ion-menu-toggle>
-        <ion-item lines = "none" routerLink="/calendar">
-          <ion-icon name = "calendar-outline" slot="start"></ion-icon>
-          <ion-label>Calendar</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
+      <ion-item-divider>
+      </ion-item-divider>
 
       <ion-menu-toggle>
         <ion-item lines = "none" (click)="onLogout()" button>

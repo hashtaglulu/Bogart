@@ -3,32 +3,38 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'pubs', pathMatch: 'full'
-  },
-
   {
     path: 'pubs',
-    children: [
-      {
-        path: '',
-        loadChildren: () => import('./pubs/pubs.module').then( m => m.PubsPageModule),
-        canLoad: [AuthGuard]
-      }
-    ]
+    loadChildren: () => import('./pubs/pubs.module').then( m => m.PubsPageModule),
+    canLoad: [AuthGuard]
   },
- {
+  {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
   {
-    path: 'booking',
-    loadChildren: () => import('./booking/booking.module').then( m => m.BookingPageModule),
+    path: 'my-favourite-places',
+    loadChildren: () => import('./pubs/my-favourite-places/my-favourite-places.module').then( m => m.MyFavouritePlacesModule),
     canLoad: [AuthGuard]
   },
   {
-    path: 'calendar',
-    loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule),
+    path: 'my-bookings',
+    loadChildren: () => import('./my-bookings/my-bookings.module').then( m => m.MyBookingsModule),
     canLoad: [AuthGuard]
+  },
+  {
+    path: 'admin-places',
+    loadChildren: () => import('./admin-places/admin-places.module').then( m => m.AdminPlacesModule),
+    canLoad: [AuthGuard]
+  },
+  {
+    path: 'admin-bookings',
+    loadChildren: () => import('./admin-bookings/admin-bookings.module').then( m => m.AdminBookingsModule),
+    canLoad: [AuthGuard]
+  },
+  {path: '',
+  redirectTo: 'pubs',
+  pathMatch: 'full'
   },
 
 ];
