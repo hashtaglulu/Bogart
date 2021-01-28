@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "bogart-8e1cc": {
+      "hosting": {
+        "app": [
+          "bogart-8e1cc"
+        ]
+      }
+    }
+  }
+}
