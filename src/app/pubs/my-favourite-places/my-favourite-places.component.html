@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Locații favorite</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="myFavouritePlaces.length === 0" style="background-color: lightgray" class="ion-text-center ion-padding">
+    <div style="padding-bottom: 5px">Nu exista intrări!</div>
+    <ion-button size="small" routerLink="/pubs/tabs/discover" color="primary">
+      <ion-icon name="home"></ion-icon>
+    </ion-button>
+  </ion-card>
+
+  <ion-row>
+    <ion-col size="12" size-sm="8" offset-sm="2">
+      <ion-list approxItemHeight="90px">
+        <ion-item *ngFor="let place of myFavouritePlaces" [routerLink] = "['/', 'pubs', 'tabs', 'discover', 'booking', place?.id]">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="place?.imageUrl"></ion-img>
+          </ion-thumbnail>
+          <ion-label> <!--wrapper for the text nest to square image-->
+            <h2>{{place?.title}}</h2>
+            <p>{{place?.description}}</p>
+            <p style="white-space: pre-line">{{place?.schedule}}</p>
+          </ion-label>
+
+          <ion-button color="danger" (click)="openWarningModal(place.id)">
+            <ion-icon name="trash"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>
