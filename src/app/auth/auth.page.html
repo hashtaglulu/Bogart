@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>{{ isLogin ? 'Login' : 'Signup'}}</ion-title>
+    <ion-title>{{ isLogin ? 'Autentificare' : 'Înregistrare'}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -55,17 +55,16 @@
             expand="block"
             (click)="onSwitchAuthMode()"
             >
-             Switch to {{ isLogin ? 'Signup' : 'Login'}}
+             Schimbă-n {{ isLogin ? 'Înregistrare' : 'Autentificare'}}
             </ion-button>
 <!--LOGIN BUTTON------------------------------------------------------------------------------->
           <ion-button
             type="submit"
             color="primary"
-            (click)="onLogin()"
             expand="block"
             [disabled]="!f_auth.valid" 
             >
-              Login
+              {{isLogin ? 'Autentificare' : 'Înregistrare'}}
             </ion-button>      
         </ion-col>
       </ion-row>
@@ -73,8 +72,8 @@
   </form>
   
 
-  <!-- <div class="ion-text-center">
+  <div class="ion-text-center">
       <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
-  </div> -->
+  </div>
 
 </ion-content>
