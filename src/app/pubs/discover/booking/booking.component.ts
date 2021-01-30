@@ -10,6 +10,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from '../../../auth/auth.service';
 
+import { PickerController } from "@ionic/angular";
+import { PickerOptions } from "@ionic/core";
+
 
 @Component({
   selector: 'app-booking',
@@ -18,10 +21,23 @@ import { AuthService } from '../../../auth/auth.service';
 })
 export class BookingComponent implements OnInit {
 
+  currentDate = new Date().toISOString();
   place: Place;
   bookingForm;
   nrRows: BehaviorSubject<number[]> = new BehaviorSubject([...Array(1)]);
   nrCols: BehaviorSubject<number[]> = new BehaviorSubject([...Array(1)]);
+  hoursInterval: string[] = [
+    "08:00 - 10:00",
+    "10:00 - 12:00",
+    "12:00 - 14:00",
+    "14:00 - 16:00",
+    "16:00 - 18:00",
+    "18:00 - 20:00",
+    "20:00 - 22:00",
+    "22:00 - 00:00",
+  ];
+  selectedHour: string = "08:00 - 10:00";
+  isHourClicked = false;
   @ViewChildren('checkboxes', {read: ElementRef}) checkboxes: QueryList<any>;
 
   constructor(
@@ -32,10 +48,14 @@ export class BookingComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private ref: ChangeDetectorRef,
-    public alertController: AlertController
+    public alertController: AlertController,
+    private pickerController: PickerController
   ) { }
 
   ngOnInit() {
+    // var date = new Date(); 
+    // var isoDateTime = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString();
+
     this.bookingForm = this.formBuilder.group({
       name: ['', Validators.required],
       userId: [this.authService.getUserId, Validators.required],
@@ -57,7 +77,8 @@ export class BookingComponent implements OnInit {
         this.nrCols.next([...Array(this.place.availableGridCols)]);
         this.ref.detectChanges();
         this.disableUnvailableSeats(this.place);
-        this.disableReservedSeats(paramMap.get('placeId'), this.bookingForm.value.dateISONoTime.substring(0, 10));
+        this.disableReservedSeats(this.place.id, 
+          this.bookingForm.value.dateISONoTime.substring(0, 10) + " Ora: " + this.selectedHour.substring(0, 2));
         this.onDateValueChanges(this.place.id);
       });
 
@@ -74,7 +95,7 @@ export class BookingComponent implements OnInit {
   onDateValueChanges(placeId: string) {
     this.bookingForm?.controls.dateISONoTime.valueChanges.subscribe( val => {
       this.disableUnvailableSeats(this.place);
-      this.disableReservedSeats(placeId, val.substring(0, 10));
+      this.disableReservedSeats(placeId, val.substring(0, 10) + " Ora: " + this.selectedHour.substring(0, 2));
     });
   }
 
@@ -101,8 +122,9 @@ export class BookingComponent implements OnInit {
           const j = checkbox.nativeElement.innerHTML[2];
           return {i, j};
       });
-
-    this.bookingForm.value.dateISONoTime = this.bookingForm.value.dateISONoTime.substring(0, 10);
+    
+    this.bookingForm.value.dateISONoTime = this.bookingForm.value.dateISONoTime.substring(0, 10)
+      + " Ora: " + this.selectedHour.substring(0, 2);
     this.bookingService.createBookingAPIPromise(this.bookingForm.value as Booking)
       .then(val => this.presentAlert());
   }
@@ -173,4 +195,34 @@ export class BookingComponent implements OnInit {
       });
   }
 
+  showPicker() {
+    this.isHourClicked = true;
+    let options: PickerOptions = {
+      buttons: [
+        {
+          text: "Cancel",
+          role: 'cancel'
+        },
+        {
+          text:'Ok',
+          handler:(value:any) => {
+            this.selectedHour = value.Ora.value;
+            this.disableUnvailableSeats(this.place);
+            this.disableReservedSeats(this.place.id,
+              this.bookingForm?.controls.dateISONoTime.value.substring(0, 10) + " Ora: " + this.selectedHour.substring(0, 2));
+          }
+        }
+      ],
+      columns:[{
+        name:'Ora',
+        options: this.getColumnOptions()
+      }]
+    };
+
+    this.pickerController.create(options).then(picker => picker.present());
+  }
+
+  getColumnOptions(){
+    return this.hoursInterval.map(x => {return {text:x, value:x}});
+  }
 }
