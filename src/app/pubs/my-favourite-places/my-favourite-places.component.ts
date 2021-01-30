@@ -41,7 +41,7 @@ export class MyFavouritePlacesComponent {
           for (let placeId of this.favouritePlaceObject.favouritePlacesIds) {
             this._placesService.getPlaceAPIObservable(placeId)
               .subscribe(place => { 
-                this.myFavouritePlaces.push({id: place.id, ...(place.data() as Place)});
+                this.myFavouritePlaces.push({id: place.id, ...(place.data() as {})} as Place);
               });
           }
       }

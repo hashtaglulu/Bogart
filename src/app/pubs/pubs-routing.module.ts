@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('./my-favourite-places/my-favourite-places.module').then( m => m.MyFavouritePlacesModule),
       },
       {
+        path: 'advanced-search',
+        loadChildren: () => import('./advanced-search/advanced-search.module').then( m => m.AdvancedSearchModule),
+      },
+      {
         path: '',
         redirectTo: '/pubs/tabs/discover',
         pathMatch: 'full'

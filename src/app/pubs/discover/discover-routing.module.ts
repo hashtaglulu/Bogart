@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'booking/:placeId',  //dynamic parameter -> different places with diff Id
     loadChildren: () => import('./booking/booking.module').then( m => m.BookingModule)
+  },
+  {
+    path: 'reviews/:placeId',  //dynamic parameter -> different places with diff Id
+    loadChildren: () => import('./reviews/reviews.module').then( m => m.ReviewsModule)
   }
 ];
 

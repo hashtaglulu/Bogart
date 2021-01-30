@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/admin"></ion-back-button>
+      <ion-back-button defaultHref="/admin-places"></ion-back-button>
     </ion-buttons>
     <ion-title>{{ addOrEdit === 'add'? 'Adaugă' : 'Modifică' }} oferta</ion-title>
     <ion-buttons slot=primary>
@@ -18,7 +18,7 @@
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
             <ion-item>
-              <ion-label position="floating">Titlu</ion-label>
+              <ion-label position="floating">Titlu *</ion-label>
               <ion-input text="text" autocomplete autocorrect autocapitalize="words" formControlName="title"></ion-input>
             </ion-item>
           </ion-col>
@@ -27,7 +27,7 @@
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
             <ion-item>
-              <ion-label position="floating">Descriere</ion-label>
+              <ion-label position="floating">Descriere *</ion-label>
               <ion-input formControlName="description"></ion-input> 
             </ion-item>
           </ion-col>
@@ -41,7 +41,7 @@
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
             <ion-item>
-              <ion-label position="floating">Orar (*)</ion-label>
+              <ion-label position="floating">Orar (text) *</ion-label>
               <ion-input formControlName="schedule"></ion-input>
             </ion-item>
           </ion-col>
@@ -50,7 +50,7 @@
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
             <ion-item>
-              <ion-label position="floating">Imagine (URL)</ion-label>
+              <ion-label position="floating">Imagine (URL) *</ion-label>
               <ion-input formControlName="imageUrl"></ion-input>
             </ion-item>
           </ion-col>
@@ -83,7 +83,7 @@
         <ion-row>
           <ion-col size-sm="6" offset-sm="3">
             <ion-item>
-              <ion-label position="floating">Numărul de persoane la o masă</ion-label>
+              <ion-label position="floating">Numărul de persoane la o masă *</ion-label>
               <ion-input type="number" formControlName="defaultTableSize"></ion-input>
             </ion-item>
           </ion-col>

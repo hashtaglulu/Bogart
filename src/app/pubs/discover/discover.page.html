@@ -38,9 +38,15 @@
               Rezervă!
             </ion-button>
 
-            <ion-button (click)="presentAlert(selectedPlace.title, selectedPlace.id)">
-              <ion-icon name="heart"></ion-icon>
-            </ion-button>
+            <div>
+              <ion-button (click)="presentAlert(selectedPlace.title, selectedPlace.id)">
+                <ion-icon name="heart"></ion-icon>
+              </ion-button>
+  
+              <ion-button [routerLink] = "['/', 'pubs', 'tabs', 'discover', 'reviews', selectedPlace?.id]">
+                <ion-icon name="star"></ion-icon>
+              </ion-button>
+            </div>
           </div>
 
         </ion-card>
@@ -62,6 +68,10 @@
 
             <ion-button (click)="presentAlert(place.title, place.id)">
               <ion-icon name="heart"></ion-icon>
+            </ion-button>
+
+            <ion-button [routerLink] = "['/', 'pubs', 'tabs', 'discover', 'reviews', place?.id]">
+              <ion-icon name="star"></ion-icon>
             </ion-button>
           </ion-item>
         </ion-virtual-scroll>

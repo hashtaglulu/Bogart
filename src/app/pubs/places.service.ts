@@ -8,19 +8,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class PlacesService {
-  allPlaces: BehaviorSubject<Place[] | null> = new BehaviorSubject<Place[] | null>(null);
-
+  
   constructor(private firestore: AngularFirestore) {
-    let getSubscription = this.getPlacesAPIObservable();
-
-    getSubscription.subscribe(data => {
-      this.allPlaces.next(data.map(e => {
-          return {
-            id: e.payload.doc.id,
-            ...(e.payload.doc.data() as {})
-          } as Place;
-        }));
-    });
   }
 
   getPlacesAPIObservable() {

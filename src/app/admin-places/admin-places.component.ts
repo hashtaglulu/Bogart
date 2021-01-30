@@ -22,13 +22,15 @@ export class AdminPlacesComponent implements OnInit {
   }
 
   getPlaces() {
-    this._placesService.allPlaces.subscribe(data =>
-      {
-        if (data) {
-          this.allPlaces = data;
-        }
-      }
-    );
+    let getSubscription = this._placesService.getPlacesAPIObservable();
+    getSubscription.subscribe(data => {
+      this.allPlaces = data.map(e => {
+          return {
+            id: e.payload.doc.id,
+            ...(e.payload.doc.data() as {})
+          } as Place;
+        });
+    });
   }
 
   deletePlace(place: Place) {

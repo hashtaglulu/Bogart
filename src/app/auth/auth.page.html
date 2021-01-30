@@ -46,26 +46,15 @@
       </ion-row>
       <ion-row>
         <ion-col size-sm="6" offset-sm="3">
-<!--SIGN UP BUTTON----------------------------------------------------------------------------->
-          <ion-button
-            type="button"
-            color="primary"
-            fill="clear"
-            fill="outline"
-            expand="block"
-            (click)="onSwitchAuthMode()"
-            >
-             Schimbă-n {{ isLogin ? 'Înregistrare' : 'Autentificare'}}
-            </ion-button>
-<!--LOGIN BUTTON------------------------------------------------------------------------------->
-          <ion-button
-            type="submit"
-            color="primary"
-            expand="block"
-            [disabled]="!f_auth.valid" 
-            >
+
+<!--LOGIN/SIGN UP BUTTON------------------------------------------------------------------------------->
+          <ion-button type="submit" color="primary" expand="block" [disabled]="!f_auth.valid">
               {{isLogin ? 'Autentificare' : 'Înregistrare'}}
-            </ion-button>      
+          </ion-button> 
+<!--SWITCH  BUTTON----------------------------------------------------------------------------->
+          <ion-button type="button" color="primary" fill="clear" fill="outline" expand="block"(click)="onSwitchAuthMode()">
+            {{ isLogin ? 'Nu ai cont? Înregistrează-te aici.' : 'Ai deja cont? Autentifică-te aici.'}}
+        </ion-button> 
         </ion-col>
       </ion-row>
     </ion-grid>

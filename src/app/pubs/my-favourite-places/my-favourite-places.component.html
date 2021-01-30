@@ -10,7 +10,7 @@
 
 <ion-content>
   <ion-card *ngIf="myFavouritePlaces.length === 0" style="background-color: lightgray" class="ion-text-center ion-padding">
-    <div style="padding-bottom: 5px">Nu exista intrări!</div>
+    <div style="padding-bottom: 5px">Nu există intrări!</div>
     <ion-button size="small" routerLink="/pubs/tabs/discover" color="primary">
       <ion-icon name="home"></ion-icon>
     </ion-button>
@@ -29,7 +29,7 @@
             <p style="white-space: pre-line">{{place?.schedule}}</p>
           </ion-label>
 
-          <ion-button color="danger" (click)="openWarningModal(place.id)">
+          <ion-button color="danger" (click)="openWarningModal(place.id);">
             <ion-icon name="trash"></ion-icon>
           </ion-button>
         </ion-item>

@@ -27,15 +27,24 @@ export class DiscoverPage implements OnInit {
   ) { }
 
   ngOnInit() { 
+  }
+
+  ionViewWillEnter() {
     //fetch all places when loaded; no update for now so fetch 1 time just good enough
-    this._placesService.allPlaces.subscribe(data =>
-      {
-        if (data) {
-          this.allPlaces = data;
-          this.selectedPlace = this.allPlaces[0];
-        }
-      }
-    );
+    this.getAllPlaces();
+  }
+
+  getAllPlaces() {
+    let getSubscription = this._placesService.getPlacesAPIObservable();
+    getSubscription.subscribe(data => {
+      this.allPlaces = data.map(e => {
+          return {
+            id: e.payload.doc.id,
+            ...(e.payload.doc.data() as {})
+          } as Place;
+        });
+      this.selectedPlace = this.allPlaces[0];
+    });
   }
 
   onOpenMenu(){
