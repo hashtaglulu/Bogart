@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Căutare avansată</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar showcancelbutton (ionInput)="filterList($event)"></ion-searchbar>
+
+  <ion-row [formGroup]="openDays">
+    <ion-col size-sm="6" offset-sm="3">
+
+      <!-- <ion-item style="display: inline-block"> 
+        <ion-label>Doar:</ion-label>
+       </ion-item> -->
+
+      <ion-item style="display: inline-block"> 
+        <ion-label>Săpt.&nbsp;</ion-label>
+        <ion-checkbox formControlName="week"></ion-checkbox>
+       </ion-item>
+
+       <ion-item style="display: inline-block">
+        <ion-label>Sâm.&nbsp;</ion-label>
+        <ion-checkbox formControlName="saturday"></ion-checkbox>
+       </ion-item>
+
+       <ion-item style="display: inline-block">
+        <ion-label>Dum.&nbsp;</ion-label>
+        <ion-checkbox formControlName="sunday"></ion-checkbox>
+       </ion-item>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row>
+    <ion-col size="12" size-sm="8" offset-sm="2">
+      <ion-virtual-scroll [items]="filteredPlaces" approxItemHeight="90px">
+        <ion-item *virtualItem="let place"  [routerLink] = "['/', 'pubs', 'tabs', 'discover', 'booking', place?.id]">
+          <ion-thumbnail slot="start">
+            <ion-img [src]="place?.imageUrl"></ion-img>
+          </ion-thumbnail>
+          <ion-label> <!--wrapper for the text nest to square image-->
+            <h2>{{place?.title}}</h2>
+            <p>{{place?.description}}</p>
+            <p style="white-space: pre-line">{{place?.schedule}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-virtual-scroll>
+    </ion-col>
+  </ion-row>
+</ion-content>

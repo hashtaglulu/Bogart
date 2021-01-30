@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
   {
+    path: 'advanced-search',
+    loadChildren: () => import('./pubs/advanced-search/advanced-search.module').then( m => m.AdvancedSearchModule),
+    canLoad: [AuthGuard]
+  },
+  {
     path: 'my-favourite-places',
     loadChildren: () => import('./pubs/my-favourite-places/my-favourite-places.module').then( m => m.MyFavouritePlacesModule),
     canLoad: [AuthGuard]

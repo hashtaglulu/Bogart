@@ -10,7 +10,7 @@
 
     <ion-content>
       <ion-list>
-        <ion-menu-toggle menu="m1">
+      <ion-menu-toggle menu="m1">
         <ion-item lines = "none" routerLink="/pubs/tabs/discover">
           <ion-icon name = "home" slot="start"></ion-icon>
           <ion-label>Descoperă locații</ion-label>
@@ -21,6 +21,13 @@
         <ion-item lines = "none" routerLink="my-favourite-places">
           <ion-icon name="heart" slot="start"></ion-icon>
           <ion-label>Locații favorite</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+
+      <ion-menu-toggle menu="m1">
+        <ion-item lines = "none" routerLink="advanced-search">
+          <ion-icon name = "search" slot="start"></ion-icon>
+          <ion-label>Căutare avansată</ion-label>
         </ion-item>
       </ion-menu-toggle>
 
